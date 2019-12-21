@@ -3,7 +3,9 @@ package com.itexico.restapi.repositories
 import com.itexico.restapi.models.EmployeePrivileges
 import com.itexico.restapi.models.EmployeePrivilegesPK
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
+@Repository
 interface EmployeePrivilegesRepository : JpaRepository<EmployeePrivileges, EmployeePrivilegesPK> {
 
     /*Encuentra un registro por medio del atributo id del atributo employeeId*/
