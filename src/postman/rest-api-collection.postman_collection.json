@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "fca685fd-b316-4dc0-b420-6712508fc439",
+		"name": "rest-api-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Create An Employee",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ab5d01d1-b1e5-4462-a542-076dced1a5ae",
+								"exec": [
+									"var emailSuffix = Math.floor(Math.random() * 100000);",
+									"var generatedEmail = \"test\"+emailSuffix+\"@email.com\";",
+									"",
+									"pm.environment.set(\"GENERATED_EMAIL\", generatedEmail);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b046c901-62db-4610-925d-c8aa776b3782",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Set Environment Variables\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"EMPLOYEE_ID\", jsonData.id);",
+									"    pm.environment.set(\"EMPLOYEE_EMAIL\", jsonData.emailAddress);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"company\":\"Test Company\",\n\t\"address\":\"123 1st Avenue\",\n\t\"city\":\"Test City\",\n\t\"notes\":null,\n\t\"attachments\":\"\",\n\t\"lastName\":\"Test Lastname\",\n\t\"firstName\":\"Test Firstname\",\n\t\"emailAddress\": \"{{GENERATED_EMAIL}}\",\n\t\"jobTitle\":\"Test Title\",\n\t\"businessPhone\":\"(123)555-0100\",\n\t\"homePhone\":\"(123)555-0102\",\n\t\"mobilePhone\":null,\n\t\"faxNumber\":\"(123)555-0103\",\n\t\"stateProvince\":\"WA\",\n\t\"zipPostalCode\":\"99999\",\n\t\"countryRegion\":\"USA\",\n\t\"webPage\":\"test.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employees/",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Employee By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11adbf70-a561-4912-b1f1-35e50d30a3df",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employees/id/{{EMPLOYEE_ID}}",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employees",
+								"id",
+								"{{EMPLOYEE_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Employee By Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5e88faf-94ea-4851-be2e-5e4f7a745603",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employees/email/{{EMPLOYEE_EMAIL}}",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employees",
+								"email",
+								"{{EMPLOYEE_EMAIL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Employees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "100e1d9d-05f7-4c72-a254-0173b9dec43c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employees/",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Privileges",
+			"item": [
+				{
+					"name": "Create A Privilege",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "753348b7-2fa3-4872-92dd-9d73d8d2d4e6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f6fb70a-374b-4262-8f4c-c4d7c43a7294",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Set Environment Variables\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"PRIVILEGE_ID\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"privilegeName\": \"Test Privilege\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/privileges/",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"privileges",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Privilege By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1dec41c-52fd-465c-972b-626635a7771b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/privileges/privilege_id/{{PRIVILEGE_ID}}",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"privileges",
+								"privilege_id",
+								"{{PRIVILEGE_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All Privileges",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "225a0d26-8941-4df1-9ce2-5d390b12590a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/northwind/privileges/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"northwind",
+								"privileges",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Employee Privileges",
+			"item": [
+				{
+					"name": "Find By Employee ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bea4e829-951d-4cf0-9ab2-1224059e7370",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employee_privileges/employee_id/2",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employee_privileges",
+								"employee_id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Privilege ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9113843-da71-4148-8b5b-4e248787f015",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{REST_API_URL_LOCAL}}/northwind/employee_privileges/privilege_id/2",
+							"host": [
+								"{{REST_API_URL_LOCAL}}"
+							],
+							"path": [
+								"northwind",
+								"employee_privileges",
+								"privilege_id",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

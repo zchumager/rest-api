@@ -19,7 +19,7 @@ public class EmployeePrivilegesController(
             : ResponseEntity<List<EmployeePrivileges>>
             = ResponseEntity.ok().body(employeePrivilegesRepository.findByEmployeeId_Id(employeeId))
 
-    @GetMapping("privilege/{privilege_id}")
+    @GetMapping("privilege_id/{privilege_id}")
     fun findByPrivilegeId(@Valid @PathVariable("privilege_id") privilegeId: Int)
             : ResponseEntity<List<EmployeePrivileges>>
             = ResponseEntity.ok().body(employeePrivilegesRepository.findByPrivilegeId_Id(privilegeId))

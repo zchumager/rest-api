@@ -14,7 +14,7 @@ CREATE TABLE `privileges` (
 @Entity
 @Table(schema = "northwind", name = "privileges")
 data class Privilege (
-    @Id @Column(name = "id")
+    @Column(name = "id") @Id @GeneratedValue
     @JsonProperty("id")
     var id: Int ?= 0,
 

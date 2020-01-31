@@ -38,7 +38,7 @@ CREATE TABLE `employees` (
 @Table(schema = "northwind", name = "employees")
 data class Employee (
 
-    @Id @Column(name = "id")
+    @Column(name = "id") @Id @GeneratedValue
     @JsonProperty("id")
     var id: Int ?= 0,
 

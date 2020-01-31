@@ -26,7 +26,7 @@ class EmployeeController (val employeeRepository: EmployeeRepository) {
             : ResponseEntity<Optional<Employee>>
             = ResponseEntity.ok().body(employeeRepository.findByEmailAddress(emailAddress))
 
-    @GetMapping("/{company}/{job_title}")
+    @GetMapping("/company/{company}/title/{job_title}")
     fun findByCompanyAndJobTitle(@Valid @PathVariable(name = "company") company:String
                                  , @Valid @PathVariable(name = "job_title") jobTitle: String)
             : ResponseEntity<List<Employee>>

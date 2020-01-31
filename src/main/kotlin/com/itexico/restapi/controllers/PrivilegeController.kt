@@ -16,7 +16,7 @@ class PrivilegeController(val privilegeRepository: PrivilegeRepository) {
             : ResponseEntity<List<Privilege>>
             = ResponseEntity.ok().body(privilegeRepository.findAll())
 
-    @GetMapping("/{privilege_id}")
+    @GetMapping("/privilege_id/{privilege_id}")
     fun findById(@Valid @PathVariable("privilege_id") privilegeId: Int)
             : ResponseEntity<Optional<Privilege>>
             = ResponseEntity.ok().body(privilegeRepository.findById(privilegeId))
