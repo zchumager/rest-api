@@ -1,12 +1,13 @@
 package com.itexico.test.factories
 
 import com.itexico.restapi.models.EmployeePrivileges
+import com.itexico.test.bdd.EmployeePrivilegesTest
 
-class TestEmployeePrivilegesFactory {
+class TestEmployeePrivilegesFacade {
     static EmployeePrivileges buildEmployeePrivileges(privilege_id = 1111) {
         return new EmployeePrivileges(
-                TestEmployeeFactory.buildEmployee(),
-                TestPrivilegeDataFactory.buildPrivilege(privilege_id)
+                TestEmployeeFacade.buildEmployee(),
+                TestPrivilegeFacade.buildPrivilege(privilege_id)
         )
     }
 
@@ -19,7 +20,7 @@ class TestEmployeePrivilegesFactory {
     }
 
     static List<EmployeePrivileges> buildDuplicatedPrivilegesList() {
-        def employeePrivileges = new ArrayList<com.itexico.test.bdd.EmployeePrivileges>() {{
+        def employeePrivileges = new ArrayList<EmployeePrivilegesTest>() {{
             add(buildEmployeePrivileges())
             add(buildEmployeePrivileges())
         }}

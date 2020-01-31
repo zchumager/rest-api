@@ -2,7 +2,8 @@ package com.itexico.test.factories
 
 import com.itexico.restapi.models.Employee
 
-class TestEmployeeFactory {
+class TestEmployeeFacade {
+
     static Employee buildEmployee(id = 1111) {
         return new Employee(
                 id,

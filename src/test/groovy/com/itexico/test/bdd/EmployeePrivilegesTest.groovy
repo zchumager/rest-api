@@ -2,12 +2,12 @@ package com.itexico.test.bdd
 
 import com.itexico.restapi.controllers.EmployeePrivilegesController
 import com.itexico.restapi.repositories.EmployeePrivilegesRepository
-import com.itexico.test.factories.TestEmployeePrivilegesFactory
+import com.itexico.test.factories.TestEmployeePrivilegesFacade
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
 
-class EmployeePrivileges extends Specification{
+class EmployeePrivilegesTest extends Specification{
     def data
     def result
     @Shared EmployeePrivilegesRepository repository
@@ -20,7 +20,7 @@ class EmployeePrivileges extends Specification{
 
     def "verify findByEmployeeId"() {
         given: "expected data is set"
-            data = TestEmployeePrivilegesFactory.buildEmployeePrivilegesList()
+            data = TestEmployeePrivilegesFacade.buildEmployeePrivilegesList()
             repository.findByEmployeeId_Id(data[0].employeeId.id) >> data
 
         when: "actual result is set"
@@ -33,7 +33,7 @@ class EmployeePrivileges extends Specification{
 
     def "verify findByPrivilegeId"() {
         given: "expected data is set"
-            data = TestEmployeePrivilegesFactory.buildDuplicatedPrivilegesList()
+            data = TestEmployeePrivilegesFacade.buildDuplicatedPrivilegesList()
             repository.findByPrivilegeId_Id(data[0].privilegeId.id) >> data
 
         when: "actual result is set"

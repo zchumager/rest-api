@@ -2,8 +2,7 @@ package com.itexico.test.bdd
 
 import com.itexico.restapi.controllers.PrivilegeController
 import com.itexico.restapi.repositories.PrivilegeRepository
-import com.itexico.test.factories.TestEmployeeFactory
-import com.itexico.test.factories.TestPrivilegeDataFactory
+import com.itexico.test.factories.TestPrivilegeFacade
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
@@ -21,7 +20,7 @@ class PrivilegeControllerTest extends Specification{
 
     def "Verify findAll"() {
         given: "expected data is set"
-            data = TestPrivilegeDataFactory.buildPrivilegeList()
+            data = TestPrivilegeFacade.buildPrivilegeList()
             repository.findAll() >> data
 
         when: "actual result is set"
@@ -34,7 +33,7 @@ class PrivilegeControllerTest extends Specification{
 
     def "verify findById"() {
         given: "expected data is set"
-            data = TestPrivilegeDataFactory.buildPrivilege()
+            data = TestPrivilegeFacade.buildPrivilege()
             repository.findById(data.id) >> Optional.of(data)
 
         when: "actual result is set"
@@ -47,7 +46,7 @@ class PrivilegeControllerTest extends Specification{
 
     def "Verify createEntry"() {
         given: "expected data is set"
-            data = TestPrivilegeDataFactory.buildPrivilege()
+            data = TestPrivilegeFacade.buildPrivilege()
             repository.save(data) >> data
 
         when: "actual result is set"

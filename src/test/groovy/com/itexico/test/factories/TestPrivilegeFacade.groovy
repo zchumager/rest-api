@@ -3,7 +3,7 @@ package com.itexico.test.factories
 import com.itexico.restapi.models.Privilege
 
 
-class TestPrivilegeDataFactory {
+class TestPrivilegeFacade {
 
     static Privilege buildPrivilege(id = 1111) {
         return new Privilege(id, "Test Privilege")
