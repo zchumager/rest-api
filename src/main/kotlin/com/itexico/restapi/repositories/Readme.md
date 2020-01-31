@@ -1,17 +1,16 @@
 Property Expression
-Permite construir una Custom Query utilizando solo una Convencion
+Allows to build a custom query using naming convention
 
-Ejemplos
+Practical Examples
 
-para buscar por un atributo
+Finding a record by an attribute
 findByAttribute(T parameter)
 
-para buscar por un atributo u otro
+Finding a record by and attribute and other
 findByAttributeAndOtherAttribute(T parameter1, T parameter2)
 
-para buscar por el atributo de un objeto atributo
+Finding a record by the attribute of an object attribute
 findByObject_Attribute(T parameter)
- 
-Nota: El guion bajo seria la substitucion del punto ya que el atributo
-original luciria asi:
-    object.attribute
+
+Note: underscore is the equivalent of the dot of OOP in Property Expression
+Example: object.attribute <==> Object_Attribute
