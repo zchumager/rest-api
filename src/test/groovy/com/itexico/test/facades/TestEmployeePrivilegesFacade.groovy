@@ -1,4 +1,4 @@
-package com.itexico.test.factories
+package com.itexico.test.facades
 
 import com.itexico.restapi.models.EmployeePrivileges
 import com.itexico.test.bdd.EmployeePrivilegesTest
