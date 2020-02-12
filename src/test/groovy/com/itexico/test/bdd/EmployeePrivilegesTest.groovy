@@ -2,7 +2,7 @@ package com.itexico.test.bdd
 
 import com.itexico.restapi.controllers.EmployeePrivilegesController
 import com.itexico.restapi.repositories.EmployeePrivilegesRepository
-import com.itexico.test.factories.TestEmployeePrivilegesFacade
+import com.itexico.test.facades.TestEmployeePrivilegesFacade
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
@@ -19,11 +19,11 @@ class EmployeePrivilegesTest extends Specification{
     }
 
     def "verify findByEmployeeId"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = TestEmployeePrivilegesFacade.buildEmployeePrivilegesList()
             repository.findByEmployeeId_Id(data[0].employeeId.id) >> data
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             result = controller.findByEmployeeId(data[0].employeeId.id)
 
         then: "actual result is compared to expected data"
@@ -32,11 +32,11 @@ class EmployeePrivilegesTest extends Specification{
     }
 
     def "verify findByPrivilegeId"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = TestEmployeePrivilegesFacade.buildDuplicatedPrivilegesList()
             repository.findByPrivilegeId_Id(data[0].privilegeId.id) >> data
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             result = controller.findByPrivilegeId(data[0].privilegeId.id)
 
         then: "actual result is compared to expected data"

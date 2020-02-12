@@ -14,10 +14,10 @@ class HomeControllerTest extends Specification{
     }
 
     def "Verify Welcome Message"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             def data = "Welcome to Rest API Kotlin Demo"
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             def result = controller.home()
 
         then: "actual result is compared with expected data"

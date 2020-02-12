@@ -2,7 +2,7 @@ package com.itexico.test.bdd
 
 import com.itexico.restapi.controllers.PrivilegeController
 import com.itexico.restapi.repositories.PrivilegeRepository
-import com.itexico.test.factories.TestPrivilegeFacade
+import com.itexico.test.facades.TestPrivilegeFacade
 import org.springframework.http.HttpStatus
 import spock.lang.Shared
 import spock.lang.Specification
@@ -19,11 +19,11 @@ class PrivilegeControllerTest extends Specification{
     }
 
     def "Verify findAll"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = TestPrivilegeFacade.buildPrivilegeList()
             repository.findAll() >> data
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             result = controller.findAll()
 
         then: "actual result is compared to expected data"
@@ -32,11 +32,11 @@ class PrivilegeControllerTest extends Specification{
     }
 
     def "verify findById"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = TestPrivilegeFacade.buildPrivilege()
             repository.findById(data.id) >> Optional.of(data)
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             result = controller.findById(data.id)
 
         then: "actual result is compared to expected data"
@@ -45,11 +45,11 @@ class PrivilegeControllerTest extends Specification{
     }
 
     def "Verify createEntry"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = TestPrivilegeFacade.buildPrivilege()
             repository.save(data) >> data
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             def result = controller.createEntry(data)
 
         then: "actual result is compared to expected data"
@@ -58,10 +58,10 @@ class PrivilegeControllerTest extends Specification{
     }
 
     def "Verify null for missing entry"() {
-        given: "expected data is set"
+        given: "expected data is mocked"
             data = null
 
-        when: "actual result is set"
+        when: "actual result is retrieved from controller"
             result = controller.findById(0)
 
         then: "actual result is compared to expected data"
